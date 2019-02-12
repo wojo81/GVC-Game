@@ -304,10 +304,10 @@ window.onkeyup= function(event) {
 }
 
 const PLAYER_PATHS= ["carterPlayer.png", "aeronePlayer.png", "kennyPlayer.png"];
-const HEALTHY_FOOD_PATHS= ["Carrot.png", "Potato.png", "Chicken.png"];
-const UNHEALTHY_FOOD_PATHS= ["reeses.png", "mtnDew.png", "fries.png", "doritos.png", "burger.png", "chiliDog.png"];
-const HEALTHY_SERVER_PATHS= ["unhealthyThrower.png"];
-const UNHEALTHY_SERVER_PATHS= ["Carrot.png"];
+const HEALTHY_FOOD_PATHS= [];
+const UNHEALTHY_FOOD_PATHS= [];
+const HEALTHY_SERVER_PATHS= [];
+const UNHEALTHY_SERVER_PATHS= [];
 
 const PLAYER_SPEED= window.innerWidth / 175;
 const SERVER_SPEED= window.innerWidth / 175;
