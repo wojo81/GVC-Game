@@ -5,7 +5,7 @@
 		<title></title>
 		<style>
 			body {
-				background-image: url("background.jpg");
+				background-image: url("resources/background.jpg");
 				background-repeat: no-repeat;
 				background-size: cover;
 				overflow: hidden;
@@ -14,16 +14,28 @@
 	</head>
 	<body scroll= "no" style= "overflow: hidden;">
 		<script src= "main.js"></script>
+		
 		<label id= "losingLabel"
 			   style= "text-align: center; display: block; width: 200px; margin: 0 auto; color: blue; font-size: 32px">
 		</label>
 		<label id= "scoreLabel"
 			   style= "display: block; font_size: 32px;">
 		</label>
+		
 		<input type= "button"
 			   id= "playButton"
 			   value= "Play"
 			   onclick= "playGame()"
 			   style= "display: block; margin: 0 auto;">
+		
+		<audio src= "resources/addPoint.mp3"
+			   id= "addPointSound">
+		</audio>
+		<audio src= "resources/addThrower.mp3"
+			   id= "addThrowerSound">
+		</audio>
+		<audio src= "resources/death.mp3"
+			   id= "deathSound">
+		</audio>
 	</body>
 </html>

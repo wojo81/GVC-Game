@@ -19,7 +19,7 @@ class Entity {
 	
 	display(imagePaths) {
 		let randomIndex= Math.floor(Math.random() * imagePaths.length);
-		this._image.src= imagePaths[randomIndex];
+		this._image.src= "resources/" + imagePaths[randomIndex];
 		this._image.style.display= "block";
 	}
 	
@@ -77,7 +77,7 @@ class Food extends Entity {
 	
 	constructor(server) {
 		super();
-		this._speed= Math.floor(Math.random() * (MAX_FOOD_SPEED - MIN_FOOD_SPEED + 1) + MIN_FOOD_SPEED)
+		this._speed= Math.random() * (MAX_FOOD_SPEED - MIN_FOOD_SPEED + 1) + MIN_FOOD_SPEED
 		this.left= server.left;
 		this.top= server.top;
 	}
@@ -238,6 +238,9 @@ function addToScore(score) {
 		servers.push(server);
 		server.display();
 		targetScore= Math.floor(targetScore * 1.5);
+		document.getElementById("addThrowerSound").play();
+	} else {
+		document.getElementById("addPointSound").play();
 	}
 }
 
@@ -246,6 +249,7 @@ function removeFood(food) {
 }
 
 function endGame() {
+	
 	clearInterval(timer);
 	
 	player.clearDisplay();
@@ -263,7 +267,8 @@ function endGame() {
 		foods.pop();
 	}
 	
-	document.getElementById("losingLabel").innerText= "You lose!\nYou had a score of\n" + player.score;
+	document.getElementById("deathSound").play();
+	document.getElementById("losingLabel").innerText= "Game Over!\nYou had a score of\n" + player.score;
 	document.getElementById("playButton").style.display= "block";
 	document.getElementById("scoreLabel").style.display= "";
 }
