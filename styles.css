@@ -1,0 +1,33 @@
+
+body {
+	background-image: url("resources/background.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+}
+
+#losingLabel {
+	text-align: center;
+	display: block;
+	width: 200px;
+	margin: 0 auto;
+	color: red;
+	font-size: 32px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#scoreLabel {
+	display: block;
+	width: 100px;
+	font-size: 20px;
+	color: blue;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#playButton {
+	display: block;
+	margin: 0 auto;
+	width: 100px;
+	font-size: 30px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}

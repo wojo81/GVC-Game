@@ -1,33 +1,27 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset= "utf-8">
 		<title></title>
-		<style>
-			body {
-				background-image: url("resources/background.jpg");
-				background-repeat: no-repeat;
-				background-size: cover;
-				overflow: hidden;
-			}
-		</style>
+		<link rel= "stylesheet" href= "styles.css">
 	</head>
 	<body scroll= "no" style= "overflow: hidden;">
 		<script src= "main.js"></script>
 		
-		<label id= "losingLabel"
-			   style= "text-align: center; display: block; width: 200px; margin: 0 auto; color: blue; font-size: 32px">
-		</label>
-		<label id= "scoreLabel"
-			   style= "display: block; font_size: 32px;">
-		</label>
+		<label id= "losingLabel"></label>
+		<label id= "scoreLabel"></label>
 		
 		<input type= "button"
 			   id= "playButton"
 			   value= "Play"
-			   onclick= "playGame()"
-			   style= "display: block; margin: 0 auto;">
+			   onclick= "playGame()">
 		
+		
+		<audio loop
+			src= "resources/music.mp3"
+			id= "music">
+		</audio>
 		<audio src= "resources/addPoint.mp3"
 			   id= "addPointSound">
 		</audio>
