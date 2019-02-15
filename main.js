@@ -19,6 +19,12 @@ class Entity {
 
 	display(imagePaths) {
 		let randomIndex= Math.floor(Math.random() * imagePaths.length);
+		
+		if(imagePaths[randomIndex] === "gordon.png") {
+			let randomNumber= Math.floor(Math.random() * 3) + 1;
+			document.getElementById("quote" + randomNumber).play();
+		}
+		
 		this._image.src= "resources/" + imagePaths[randomIndex];
 		this._image.style.display= "block";
 	}
@@ -134,8 +140,6 @@ class Server extends Entity {
 
 		this._healthy= healthy;
 		this._timeBetweenDrops= timeBetweenDrops;
-
-		this.genTimeBetweenShifts();
 	}
 
 	display() {
@@ -152,6 +156,8 @@ class Server extends Entity {
 		} else {
 			super.display(UNHEALTHY_SERVER_PATHS);
 		}
+		
+		this.genTimeBetweenShifts();
 	}
 
 	update() {
@@ -314,7 +320,6 @@ const PLAYER_SPEED= window.innerWidth / 175;
 const SERVER_SPEED= window.innerWidth / 175;
 const MIN_FOOD_SPEED= window.innerHeight / 145;
 const MAX_FOOD_SPEED= window.innerHeight / 115;
-
 
 const ENTITY_WIDTH= window.innerWidth / 24;
 const ENTITY_HEIGHT= window.innerHeight / 12;
