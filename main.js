@@ -1,3 +1,7 @@
+/*
+Created by Tyler Wojciechowski and Tyler Zega for
+the Global Virtual Classroom
+*/
 
 class Entity {
 
@@ -210,6 +214,9 @@ class Player extends Entity {
 
 	constructor() {
 		super();
+		this.highScore= getHighScore();
+		document.getElementById("losingLabel").innerText=
+			"High Score: " + this.highScore;
 	}
 
 	display() {
@@ -234,6 +241,16 @@ class Player extends Entity {
 			}
 		}
 	}
+}
+
+function getHighScore() {
+	let highScore= localStorage.getItem("highscore");
+	
+	if(highScore === null) {
+		return 0;
+	}
+	
+	return highScore;
 }
 
 function addToScore(score) {
@@ -273,9 +290,16 @@ function endGame() {
 		foods.pop();
 	}
 	
+	if(player.score > player.highScore) {
+		player.highScore= player.score;
+		localStorage.setItem("highscore", player.highScore);
+	}
+	
 	document.getElementById("music").pause();
 	document.getElementById("deathSound").play();
-	document.getElementById("losingLabel").innerText= "Game Over!\nYou had a score of\n" + player.score;
+	document.getElementById("losingLabel").innerText=
+		"Game Over!\nYou had a score of " + player.score
+		+ "\n\nHigh Score: " + player.highScore;
 	document.getElementById("playButton").style.display= "block";
 	document.getElementById("scoreLabel").innerText= "";
 }
@@ -310,7 +334,7 @@ window.onkeyup= function(event) {
 	}
 };
 
-const PLAYER_PATHS= ["carterPlayer.png", "aeronePlayer.png", "kennyPlayer.png"];
+const PLAYER_PATHS= ["carterPlayer.png", "aeronePlayer.png", "kennyPlayer.png", "montyPlayer.png", "jakePlayer.png"];
 const HEALTHY_FOOD_PATHS= ["water.png", "apple.png", "carrot.png", "celery.png", "salad.png"];
 const UNHEALTHY_FOOD_PATHS= ["burger.png", "chiliDog.png", "doritos.png", "fries.png", "mtnDew.png", "reeses.png"];
 const HEALTHY_SERVER_PATHS= ["guy.png", "gordon.png"];
