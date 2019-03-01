@@ -9,6 +9,7 @@ class Entity {
 		this._image= new Image();
 
 		this._image.style.position= "absolute";
+		this._image.className= "unselectable";
 
 		this._image.width= ENTITY_WIDTH;
 		this._image.height= ENTITY_HEIGHT;
@@ -346,7 +347,7 @@ window.onkeyup= function(event) {
 };
 
 window.ontouchstart= function(event) {
-	let x= event.clientX;
+	let x= event.touches[0].clientX;
 
 	if(x > window.innerWidth / 2) {
 		player.moveLeft= false;

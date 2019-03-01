@@ -3,6 +3,15 @@ Created by Tyler Wojciechowski and Tyler Zega for
 the Global Virtual Classroom
 */
 
+.unselectable {
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 body {
 	background-image: url("resources/background.jpg");
 	background-repeat: no-repeat;
@@ -13,17 +22,15 @@ body {
 #losingLabel {
 	text-align: center;
 	display: block;
-	width: 300px;
 	margin: 0 auto;
 	color: red;
-	font-size: 32px;
+	font-size: 5vw;
 	font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 #scoreLabel {
 	display: block;
-	width: 100px;
-	font-size: 20px;
+	font-size: 2vw;
 	color: green;
 	font-family: "Comic Sans MS", cursive, sans-serif;
 }
@@ -31,7 +38,6 @@ body {
 #playButton {
 	display: block;
 	margin: 0 auto;
-	width: 100px;
-	font-size: 30px;
+	font-size: 4vw;
 	font-family: "Comic Sans MS", cursive, sans-serif;
 }
