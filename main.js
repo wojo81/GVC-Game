@@ -25,15 +25,20 @@ class Entity {
 		let randomIndex1= Math.floor(Math.random() * imagePaths.length);
 		
 		if(imagePaths[randomIndex1] === "gordon.png") {
-			let randomIndex2= Math.floor(Math.random() * GORDON_QUOTE_PATHS.length);
-			document.getElementById(GORDON_QUOTE_PATHS[randomIndex2]).play();
+			let randomIndex2= Math.floor(Math.random() * GORDON_QUOTES.length);
+			GORDON_QUOTES[randomIndex2].play();
 		} else if(imagePaths[randomIndex1] === "guy.png") {
-			// let randomIndex2= Math.floor(Math.random() * GUY_QUOTE_PATHS.length);
-			// document.getElementById(GUY_QUOTE_PATHS[randomIndex2]).play();
+			// let randomIndex2= Math.floor(Math.random() * GUY_QUOTES.length);
+			// GUY_QUOTES[randomIndex2].play();
 		}
 		
 		this._image.src= "resources/" + imagePaths[randomIndex1];
 		this._image.style.display= "block";
+	}
+
+	resize() {
+		this._image.width= ENTITY_WIDTH;
+		this._image.height= ENTITY_HEIGHT;
 	}
 
 	clearDisplay() {
@@ -277,6 +282,8 @@ function removeFood(food) {
 
 function endGame() {
 
+	playing= false;
+
 	clearInterval(timer);
 
 	player.clearDisplay();
@@ -355,24 +362,46 @@ window.onmouseup= function(event) {
 	player.moveRight= false;
 }
 
+window.onresize= function(event) {
+	PLAYER_SPEED= window.innerWidth / 175;
+	SERVER_SPEED= window.innerWidth / 175;
+	MIN_FOOD_SPEED= window.innerHeight / 145;
+	MAX_FOOD_SPEED= window.innerHeight / 115;
+	
+	ENTITY_WIDTH= window.innerWidth / 24;
+	ENTITY_HEIGHT= window.innerHeight / 12;
+	
+	LEFT_BOUND= window.innerWidth / 20;
+
+	player.resize();
+	for(let server of servers) {
+		server.resize();
+	}
+	if(playing) {
+		endGame();
+	}
+}
+
 const PLAYER_PATHS= ["carterPlayer.png", "aeronePlayer.png", "kennyPlayer.png", "montyPlayer.png", "jakePlayer.png"];
 const HEALTHY_FOOD_PATHS= ["water.png", "apple.png", "carrot.png", "celery.png", "salad.png"];
 const UNHEALTHY_FOOD_PATHS= ["burger.png", "chiliDog.png", "doritos.png", "fries.png", "mtnDew.png", "reeses.png"];
 const HEALTHY_SERVER_PATHS= ["guy.png", "gordon.png"];
 const UNHEALTHY_SERVER_PATHS= ["bk.png", "ronald.png"];
 
-const GORDON_QUOTE_PATHS= ["gordonQuote1", "gordonQuote2", "gordonQuote3"];
-const GUY_QUOTE_PATHS= [];
+const GORDON_QUOTES= document.getElementById("gordonQuotes").children;
+const GUY_QUOTES= document.getElementById("guyQuotes").children;
 
-const PLAYER_SPEED= window.innerWidth / 175;
-const SERVER_SPEED= window.innerWidth / 175;
-const MIN_FOOD_SPEED= window.innerHeight / 145;
-const MAX_FOOD_SPEED= window.innerHeight / 115;
+let PLAYER_SPEED= window.innerWidth / 175;
+let SERVER_SPEED= window.innerWidth / 175;
+let MIN_FOOD_SPEED= window.innerHeight / 145;
+let MAX_FOOD_SPEED= window.innerHeight / 115;
 
-const ENTITY_WIDTH= window.innerWidth / 24;
-const ENTITY_HEIGHT= window.innerHeight / 12;
+let ENTITY_WIDTH= window.innerWidth / 24;
+let ENTITY_HEIGHT= window.innerHeight / 12;
 
-const LEFT_BOUND= window.innerWidth / 20;
+let LEFT_BOUND= window.innerWidth / 20;
+
+let playing= false;
 
 let player= new Player();
 let servers= [new Server(true, 3000), new Server(false, 1000)];
@@ -394,4 +423,6 @@ function playGame() {
 	}
 
 	timer= setInterval(update, 1000 / 60);
+
+	playing= true;
 }
