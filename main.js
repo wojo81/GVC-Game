@@ -345,7 +345,7 @@ window.onkeyup= function(event) {
 	}
 };
 
-window.onmousedown= function(event) {
+window.ontouchstart= function(event) {
 	let x= event.clientX;
 
 	if(x > window.innerWidth / 2) {
@@ -357,12 +357,17 @@ window.onmousedown= function(event) {
 	}
 }
 
-window.onmouseup= function(event) {
+window.ontouchend= function(event) {
 	player.moveLeft= false;
 	player.moveRight= false;
 }
 
 window.onresize= function(event) {
+
+	if(playing) {
+		endGame();
+	}
+
 	PLAYER_SPEED= window.innerWidth / 175;
 	SERVER_SPEED= window.innerWidth / 175;
 	MIN_FOOD_SPEED= window.innerHeight / 145;
@@ -376,9 +381,6 @@ window.onresize= function(event) {
 	player.resize();
 	for(let server of servers) {
 		server.resize();
-	}
-	if(playing) {
-		endGame();
 	}
 }
 
