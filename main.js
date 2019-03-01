@@ -22,14 +22,17 @@ class Entity {
 	}
 
 	display(imagePaths) {
-		let randomIndex= Math.floor(Math.random() * imagePaths.length);
+		let randomIndex1= Math.floor(Math.random() * imagePaths.length);
 		
-		if(imagePaths[randomIndex] === "gordon.png") {
-			let randomNumber= Math.floor(Math.random() * 3) + 1;
-			document.getElementById("quote" + randomNumber).play();
+		if(imagePaths[randomIndex1] === "gordon.png") {
+			let randomIndex2= Math.floor(Math.random() * GORDON_QUOTE_PATHS.length);
+			document.getElementById(GORDON_QUOTE_PATHS[randomIndex2]).play();
+		} else if(imagePaths[randomIndex1] === "guy.png") {
+			// let randomIndex2= Math.floor(Math.random() * GUY_QUOTE_PATHS.length);
+			// document.getElementById(GUY_QUOTE_PATHS[randomIndex2]).play();
 		}
 		
-		this._image.src= "resources/" + imagePaths[randomIndex];
+		this._image.src= "resources/" + imagePaths[randomIndex1];
 		this._image.style.display= "block";
 	}
 
@@ -139,6 +142,7 @@ class UnhealthyFood extends Food {
 }
 
 class Server extends Entity {
+
 	constructor(healthy, timeBetweenDrops) {
 		super();
 
@@ -334,11 +338,31 @@ window.onkeyup= function(event) {
 	}
 };
 
+window.onmousedown= function(event) {
+	let x= event.clientX;
+
+	if(x > window.innerWidth / 2) {
+		player.moveLeft= false;
+		player.moveRight= true;
+	} else {
+		player.moveRight= false;
+		player.moveLeft= true;
+	}
+}
+
+window.onmouseup= function(event) {
+	player.moveLeft= false;
+	player.moveRight= false;
+}
+
 const PLAYER_PATHS= ["carterPlayer.png", "aeronePlayer.png", "kennyPlayer.png", "montyPlayer.png", "jakePlayer.png"];
 const HEALTHY_FOOD_PATHS= ["water.png", "apple.png", "carrot.png", "celery.png", "salad.png"];
 const UNHEALTHY_FOOD_PATHS= ["burger.png", "chiliDog.png", "doritos.png", "fries.png", "mtnDew.png", "reeses.png"];
 const HEALTHY_SERVER_PATHS= ["guy.png", "gordon.png"];
 const UNHEALTHY_SERVER_PATHS= ["bk.png", "ronald.png"];
+
+const GORDON_QUOTE_PATHS= ["gordonQuote1", "gordonQuote2", "gordonQuote3"];
+const GUY_QUOTE_PATHS= [];
 
 const PLAYER_SPEED= window.innerWidth / 175;
 const SERVER_SPEED= window.innerWidth / 175;
