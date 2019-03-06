@@ -29,8 +29,8 @@ class Entity {
 			let randomIndex2= Math.floor(Math.random() * GORDON_QUOTES.length);
 			GORDON_QUOTES[randomIndex2].play();
 		} else if(imagePaths[randomIndex1] === "guy.png") {
-			// let randomIndex2= Math.floor(Math.random() * GUY_QUOTES.length);
-			// GUY_QUOTES[randomIndex2].play();
+			let randomIndex2= Math.floor(Math.random() * GUY_QUOTES.length);
+			GUY_QUOTES[randomIndex2].play();
 		}
 		
 		this._image.src= "resources/" + imagePaths[randomIndex1];
