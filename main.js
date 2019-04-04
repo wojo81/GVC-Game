@@ -24,13 +24,13 @@ class Entity {
 
 	display(imagePaths) {
 		let randomIndex1= Math.floor(Math.random() * imagePaths.length);
-		
+
 		if(imagePaths[randomIndex1] === "gordon.png") {
-			let randomIndex2= Math.floor(Math.random() * GORDON_QUOTES.length);
-			GORDON_QUOTES[randomIndex2].play();
+			getGordonQuote();
+			chef = 0;
 		} else if(imagePaths[randomIndex1] === "guy.png") {
-			let randomIndex2= Math.floor(Math.random() * GUY_QUOTES.length);
-			GUY_QUOTES[randomIndex2].play();
+			getGuyQuote();
+			chef = 1;
 		}
 		
 		this._image.src= "resources/" + imagePaths[randomIndex1];
@@ -271,7 +271,11 @@ function addToScore(score) {
 		servers.push(server);
 		server.display();
 		targetScore= Math.floor(targetScore * 1.5);
-		document.getElementById("addThrowerSound").play();
+		if(chef === 0) {
+			getGordonQuote();
+		} else if(chef === 1) {
+			getGuyQuote();
+		}
 	} else {
 		document.getElementById("addPointSound").play();
 	}
@@ -314,6 +318,16 @@ function endGame() {
 		+ "\n\nHigh Score: " + player.highScore;
 	document.getElementById("playButton").style.display= "block";
 	document.getElementById("scoreLabel").innerText= "";
+}
+
+function getGordonQuote() {
+	let randomIndex2= Math.floor(Math.random() * GORDON_QUOTES.length);
+			GORDON_QUOTES[randomIndex2].play();
+}
+
+function getGuyQuote() {
+	let randomIndex2= Math.floor(Math.random() * GUY_QUOTES.length);
+			GUY_QUOTES[randomIndex2].play();
 }
 
 function update() {
@@ -393,6 +407,7 @@ const UNHEALTHY_SERVER_PATHS= ["bk.png", "ronald.png"];
 
 const GORDON_QUOTES= document.getElementById("gordonQuotes").children;
 const GUY_QUOTES= document.getElementById("guyQuotes").children;
+let chef = null;
 
 let PLAYER_SPEED= window.innerWidth / 175;
 let SERVER_SPEED= window.innerWidth / 175;
